@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <style>
+
+        body {
+        font-family: 'Bangers', cursive;
+        }
+
+        #submit-button {
+        margin-left: 16px;
+        }
+
+        .box {
+        overflow-y: scroll;
+        height: 30px;
+        }
+
+    </style>
+    <title>Unmasked: Organizations</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-center">
+    <form class="form-inline">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="#" role="button"><i class="fas fa-mask"></i> Home</a>
+            <a class="btn btn-primary" href="#" role="button">Supers</a>
+            <a class="btn btn-primary" href="#" role="button">Sightings</a>
+            <a class="btn btn-primary" href="#" role="button">Organizations</a>
+            <a class="btn btn-primary" href="#" role="button">Locations</a>
+        </div>
+    </form>
+</nav>
+
+<div class="row m-4">
+    <div class="col-3 text-center">
+        <span class="h3">Add Organization</span>
+
+    </div>
+    <div class="col-6">
+
+        <form action="addOrganization" method="POST">
+
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="name">
+                    Name</label>
+                <input class="form-control" id="name"
+                       name="name" type="text"/>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="description">
+                    Description</label>
+                <input class="form-control" id="description"
+                       name="description" type="text"/>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="address">
+                    Address</label>
+                <input class="form-control" id="address"
+                       name="address" type="text"/>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="email">
+                    Email</label>
+                <input class="form-control" id="email"
+                       name="email" type="text"/>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="phone">
+                    Phone</label>
+                <input class="form-control" id="phone"
+                       name="phone" type="text"/>
+            </div>
+
+            <div class="col m-2">
+                <div class="form-select">
+                    <label class="form-select" for="superPersonList">
+                        Super Selector
+                    </label>
+                    <select class="form-control" id="superPersonList" multiple name="superPersonId">
+                        <option th:each="superPerson : ${superPersonList}"
+                                th:text="${superPerson.name}"
+                                th:value="${superPerson.id}">
+                            Super Person
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="submit-button" type="submit">Add Organization</button>
+        </form>
+    </div>
+</div>
+
+<div class="row m-4">
+    <div class="col text-center m-3">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Members</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="organization : ${organizations}">
+<!--                <input th:text="${organization.id}" type="hidden">-->
+                <td><a href="#" th:text="${organization.name}" th:href="@{/getOrgDetails(id=${organization.id})}">Name</a></td>
+                <td><a href="#" th:href="@{/getSupersForOrg(id=${organization.id})}">Members</a></td>
+                <td th:text="${organization.address}">Address</td>
+                <td th:text="${organization.email}">Email</td>
+                <td th:text="${organization.phone}">Phone</td>
+                <td><a href="#" th:href="@{/editOrganization(id=${organization.id})}">Edit</a></td>
+                <td><a href="#" th:href="@{/deleteOrganization(id=${organization.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous" src="https://code.jquery.com/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

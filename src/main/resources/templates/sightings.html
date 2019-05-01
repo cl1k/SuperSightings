@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <style>
+
+        body {
+        font-family: 'Bangers', cursive;
+        }
+
+        #submit-button {
+        margin-left: 16px;
+        }
+
+        .box {
+        overflow-y: scroll;
+        height: 30px;
+        }
+
+
+    </style>
+    <title>Unmasked: Sightings</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-center">
+    <form class="form-inline">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="#" role="button"><i class="fas fa-mask"></i> Home</a>
+            <a class="btn btn-primary" href="#" role="button">Supers</a>
+            <a class="btn btn-primary" href="#" role="button">Sightings</a>
+            <a class="btn btn-primary" href="#" role="button">Organizations</a>
+            <a class="btn btn-primary" href="#" role="button">Locations</a>
+        </div>
+    </form>
+</nav>
+
+<div class="row m-4">
+    <div class="col-3 text-center">
+        <span class="h3">Add Sighting</span>
+
+    </div>
+
+    <div class="col-6">
+
+        <label class="form-select" for="superPersonList" style="margin-left: 10px;">
+            Super Select
+        </label>
+        <select class="form-control" id="superPersonList" multiple name="superPersonId">
+            <option th:each="superPerson : ${superPersonList}"
+                    th:selected="${sighting.superPersonList.contains(superPerson)}"
+                    th:text="${superPerson.name}"
+                    th:value="${superPerson.id}">
+                Super-Person
+            </option>
+        </select>
+
+        <div class="row m-4">
+            <div class="form-group">
+                <label for="locationList">
+                    Location Select
+                </label>
+                <select class="form-control" id="locationList" name="locationId">
+                    <option th:each="location : #{locations}"
+                            th:selected="${location.sightings.contains(location)}"
+                            th:text="${location.name}"
+                            th:value="${location.id}">
+                        Location
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <form action="addSighting" method="POST">
+            <label for="date-picker">Date Select</label>
+            <div class="form-group">
+                <input id="date-picker" name="date" type="date">
+            </div>
+            <button class="btn btn-primary" id="submit-button" type="submit">Add Sighting</button>
+        </form>
+    </div>
+
+    <div class="col-3">
+    </div>
+
+</div>
+
+<div class="row m-4">
+    <div class="col text-center m-3">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Supers</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sighting : ${sightings}">
+                <input th:text="${sighting.id}" type="hidden">
+                <td th:text="${sighting.date}">Date</td>
+                <td th:text="$@{/getLocationForSighting(id=${sighting.id})}">Location</td>
+                <td><a href="#" th:href="$@{/getSupersForSighting(id=${sighting.id})}">Supers</a></td>
+                <td><a href="#" th:href="@{/editSighting(id=${sighting.id})}">Edit</a></td>
+                <td><a href="#" th:href="@{/deleteSighting(id=${sighting.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous" src="https://code.jquery.com/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

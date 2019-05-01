@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <style>
+
+        body {
+        font-family: 'Bangers', cursive;
+        }
+
+        #submit-button {
+        margin-left: 16px;
+        }
+
+    </style>
+    <title>Unmasked: Edit Locations</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-center">
+    <form class="form-inline">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="#" role="button"><i class="fas fa-mask"></i> Home</a>
+            <a class="btn btn-primary" href="#" role="button">Supers</a>
+            <a class="btn btn-primary" href="#" role="button">Sightings</a>
+            <a class="btn btn-primary" href="#" role="button">Organizations</a>
+            <a class="btn btn-primary" href="#" role="button">Locations</a>
+        </div>
+    </form>
+</nav>
+
+<div class="row m-4">
+    <div class="col-2 text-center m-5">
+        <span class="h3">Edit Location</span>
+    </div>
+    <div class="col-8">
+        <form action="addLocation" method="POST">
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="name">
+                    Name</label>
+                <div class="col-9">
+                    <input class="form-control" id="name"
+                           name="name" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="description">
+                    Description</label>
+                <div class="col-9">
+                    <input class="form-control" id="description"
+                           name="description" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="address">
+                    Address</label>
+                <div class="col-9">
+                    <input class="form-control" id="address"
+                           name="address" type="text"/>
+                </div>
+            </div>
+            <div class="form-row m-2">
+                <div class="form-group col-md-4">
+                    <label class="col-3 col-form-label" for="latitude">
+                        Latitude</label>
+                    <input class="form-control" id="latitude"
+                           name="latitude" type="text"/>
+                </div>
+                <div class="form-group col-md-8">
+                    <label class="col-3 col-form-label" for="longitude">
+                        Longitude</label>
+                    <div class="col-7">
+                        <input class="form-control" id="longitude"
+                               name="longitude" type="text"/>
+                    </div>
+                </div>
+            </div>
+
+            <input name="id" th:value="${location.id}" type="hidden"/>
+            <button class="btn btn-primary" type="submit" id="submit-button">
+                Update Location
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous" src="https://code.jquery.com/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="/src/main/resources/static/home.js"></script>
+</body>
+</html>

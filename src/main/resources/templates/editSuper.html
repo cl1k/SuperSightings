@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <style>
+
+        body {
+        font-family: 'Bangers', cursive;
+        }
+
+        #submit-button {
+        margin-left: 16px;
+        }
+
+        .box {
+        overflow-y: scroll;
+        height: 30px;
+        }
+
+
+    </style>
+    <title>Unmasked: Edit Supers</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-center">
+    <form class="form-inline">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="#" role="button"><i class="fas fa-mask"></i> Home</a>
+            <a class="btn btn-primary" href="#" role="button">Supers</a>
+            <a class="btn btn-primary" href="#" role="button">Sightings</a>
+            <a class="btn btn-primary" href="#" role="button">Organizations</a>
+            <a class="btn btn-primary" href="#" role="button">Locations</a>
+        </div>
+    </form>
+</nav>
+
+<div class="row m-2">
+    <div class="col-3 text-center">
+        <span class="h3">Edit Super-Person</span>
+
+    </div>
+    <div class="col-6">
+        <form action="editSuperPerson" method="POST">
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="name">
+                    Name</label>
+                <input class="form-control" id="name"
+                       name="name" type="text"/>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="description">
+                    Description</label>
+                <input class="form-control" id="description"
+                       name="description" type="text"/>
+            </div>
+            <div class="form-group">
+                <label class="col-3 col-form-label" for="superPower">
+                    Superpower</label>
+                <input class="form-control" id="superPower"
+                       name="superPower" type="text"/>
+            </div>
+            <div class="form-group">
+                <!--                Add picture possibly... -->
+            </div>
+            <div class="col-3">
+                <div class="form-check">
+                    <input checked class="form-check-input" id="isVillainRadio1" name="isVillainRadio"
+                           th:value="${false}"
+                           type="radio">
+                    <label class="form-check-label" for="isVillainRadio1">
+                        : Hero
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="isVillainRadio2" name="isVillainRadio"
+                           th:value="${true}"
+                           type="radio">
+                    <label class="form-check-label" for="isVillainRadio2">
+                        : Villain
+                    </label>
+                </div>
+            </div>
+            <input name="id" th:value="${superPerson.id}" type="hidden"/>
+            <button class="btn btn-primary" id="submit-button" type="submit">
+                Update Super
+            </button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script crossorigin="anonymous" src="https://code.jquery.com/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
